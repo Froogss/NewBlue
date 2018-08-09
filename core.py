@@ -1,6 +1,5 @@
-from discord.ext import commands
 import logging
-from BlueClass import BlueBot
+from newblue.BlueBot import BlueBot
 
 
 bot = BlueBot(command_prefix="[")
