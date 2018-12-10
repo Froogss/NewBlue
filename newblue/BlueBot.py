@@ -1,4 +1,5 @@
 from discord.ext import commands
+import logging
 import os
 import __main__
 import json
@@ -7,8 +8,9 @@ import json
 class BlueBot(commands.Bot):
 
     def __init__(self, command_prefix=None):
-        super().__init__(command_prefix=command_prefix)
         self.load_config()
+        super().__init__(command_prefix=command_prefix)
+        
 
 
     async def on_ready(self):
@@ -22,5 +24,11 @@ class BlueBot(commands.Bot):
         with open('/'.join(os.path.abspath(__main__.__file__).split(r'/')[:-1]) + "/config.json", "r") as file:
             self.cfg = json.loads(file.read())
 
+    def load_starting_commands():
+        for cog in self.cfg["starting_commands"]:
+            try:
+                self.load_extension(cog)
+                logging.info("successfully loaded extension {}".format(cog))
 
-
+            except ImportError as e:
+                logging.error("Failed to load extension {}".format(cog))
