@@ -1,3 +1,3 @@
 import os
-print(__main__.file)
-print(os.path.abspath(__main__))
+print(__nme__)
+print('/'.join(os.path.abspath(__name__).split(r'/')[:-1]))

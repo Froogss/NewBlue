@@ -1,4 +1,6 @@
 from discord.ext import commands
+import os
+import __main__
 import json
 
 
@@ -16,7 +18,8 @@ class BlueBot(commands.Bot):
             print(com.cog_name)
 
     def load_config(self):
-        with open("config.json", "r") as file:
+        print('/'.join(os.path.abspath(__main__.__file__).split(r'/')[:-1]))
+        with open('/'.join(os.path.abspath(__main__.__file__).split(r'/')[:-1]) + "/config.json", "r") as file:
             self.cfg = json.loads(file.read())
 
 
