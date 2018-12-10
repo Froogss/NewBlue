@@ -16,7 +16,6 @@ class BlueBot(commands.Bot):
     async def on_ready(self):
         print("ready")
         for com in self.commands:
-            print(com.name)
             print(com.cog_name)
 
     def load_config(self):
